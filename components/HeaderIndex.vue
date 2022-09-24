@@ -157,6 +157,10 @@ header {
       color: white;
       outline: unset;
       text-decoration: unset;
+      font-weight: bold;
+      &:hover {
+        color: yellow;
+      }
     }
   }
 }
@@ -239,5 +243,68 @@ header {
   font-size: 1.3rem;
 }
 @media screen and (min-width: 1400px) {
+  header {
+    height: 75vh;
+  }
+  .textContainer {
+    margin: 6rem 0 0 6rem;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: start;
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
+    .genreContainer {
+      justify-content: flex-start;
+      gap: 1rem;
+      width: 100%;
+      margin-left: 0.2rem;
+      p {
+        color: white;
+        font-weight: 700;
+      }
+    }
+  }
+  .arrowContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 1rem;
+    width: 10%;
+    color: white;
+    span {
+      border: white solid 1px;
+      border-radius: 50%;
+      opacity: 0.7;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+  .selectorPoints {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 0.8rem;
+    div {
+      background-color: white;
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+  .trilerButton {
+    margin-top: 4rem;
+  }
 }
 </style>

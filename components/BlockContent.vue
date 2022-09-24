@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="blocksContainer">
     <Block
       v-for="movie in movies"
       :key="movie.id"
@@ -31,11 +31,16 @@ export default {
 section {
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px 15px;
   align-items: center;
   justify-items: center;
   margin: 0 auto;
   margin-bottom: 1rem;
+}
+@media screen and (min-width: 1400px) {
+  section {
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
+  }
 }
 </style>

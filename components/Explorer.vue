@@ -62,4 +62,9 @@ section {
   background-color: white;
   padding: 1rem;
 }
+@media screen and (min-width: 1400px) {
+  section {
+    width: 80%;
+  }
+}
 </style>
