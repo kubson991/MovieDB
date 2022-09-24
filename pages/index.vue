@@ -1,14 +1,27 @@
 <template>
-  <content>
+  <section class="content">
+    <Modal v-if="ModalOpen" />
     <HeaderIndex></HeaderIndex>
     <MainIndex />
     <FooterIndex />
-  </content>
+  </section>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "IndexPage",
+  computed: {
+    ...mapGetters({
+      ModalOpen: "ModalOpen",
+    }),
+  },
 };
 </script>
-<style lang="sass" scoped></style>
+<style lang="scss" scoped>
+.content {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: scroll;
+}
+</style>

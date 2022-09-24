@@ -49,9 +49,9 @@ nav {
 img {
   height: 2rem;
   width: 2rem;
-  opacity: 0.7;
+  opacity: 0.5;
   &:hover {
-    opacity: 1;
+    opacity: 0.9;
   }
 }
 p {

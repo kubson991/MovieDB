@@ -132,9 +132,13 @@ header {
 }
 .IMDBicon {
   @include icons("~assets/imdbIMG.png");
+  width: 6.5rem;
+  height: 6.5rem;
 }
 
 .avatar {
+  max-width: 5rem;
+  max-height: 5rem;
   border-radius: 50%;
   width: 10%;
 }
@@ -145,6 +149,10 @@ header {
   justify-content: space-evenly;
   padding-top: 0.5rem;
   nav {
+    min-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     a {
       color: white;
       outline: unset;
@@ -229,5 +237,7 @@ header {
   padding: 1rem 2rem;
   font-weight: bolder;
   font-size: 1.3rem;
+}
+@media screen and (min-width: 1400px) {
 }
 </style>

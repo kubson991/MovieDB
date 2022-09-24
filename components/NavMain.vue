@@ -55,6 +55,7 @@ nav:hover {
     border-radius: 1rem;
     padding: 0.5rem;
     width: 60%;
+    z-index: 20;
   }
   P {
     display: block;

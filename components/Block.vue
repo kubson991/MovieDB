@@ -12,6 +12,11 @@
     <section class="genresSection">
       <p v-for="genre in genres" :key="genre.id">{{ genre.name }}</p>
     </section>
+    <div class="rateContainer">
+      <span class="material-icons heart"> favorite </span>
+      <p>{{ this.movie?.vote_average ? this.movie.vote_average : 0 }}</p>
+    </div>
+
     <div class="add"></div>
   </article>
 </template>
@@ -44,7 +49,6 @@ export default {
           },
         }
       );
-      console.log(movie);
       this.genres = movie.genres;
     },
   },
@@ -102,6 +106,21 @@ h2 {
     position: absolute;
     bottom: 20%;
     left: 10%;
+  }
+}
+.heart {
+  color: rgb(242, 75, 75);
+}
+.rateContainer {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 0 2rem;
+  p {
+    font-size: 1.8rem;
+    height: 1.3em;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-left: 0.3rem;
   }
 }
 </style>

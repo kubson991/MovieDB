@@ -2,15 +2,22 @@
   <section class="inputsContainer">
     <span class="material-icons-outlined buttonsOrder"> menu </span>
     <span class="material-icons-outlined buttonsOrder"> view_compact </span>
-    <input
-      type="range"
-      name=""
-      min="0"
-      max="10"
-      class="slider"
-      @input="rangeInput"
-      value="5"
-    />
+    <div class="sliderContainer">
+      <span ref="sliderValue">
+        <p>{{ sliderValue }}</p></span
+      >
+      <input
+        type="range"
+        name=""
+        min="0"
+        max="10"
+        class="slider"
+        @input="rangeInput"
+        v-model="sliderValue"
+        step="0.50"
+      />
+    </div>
+
     <div class="inputSearch">
       <input type="text" />
       <span class="material-icons-outlined"> search </span>
@@ -19,19 +26,55 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      sliderValue: 10,
+      searchInputTimer: {},
+    };
+  },
   methods: {
     rangeInput(e) {
       e.target.style["background-size"] = `${
         (e.target.value / 10) * 100
       }% 100%`;
+
+      this.$refs.sliderValue.style.left = `${(e.target.value / 10) * 100}%`;
+
+      window.clearTimeout(this.searchInputTimer);
+      this.searchInputTimer = window.setTimeout(() => {
+        this.$emit("rangevalue", this.sliderValue);
+      }, 400);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-.slider {
-  -webkit-appearance: none;
+.sliderContainer {
+  position: relative;
   width: 40%;
+  display: flex;
+  align-items: flex-end;
+  span {
+    letter-spacing: 0.1em;
+    position: absolute;
+    left: 90%;
+    top: -1500%;
+    margin: auto;
+    transform: translateX(-0.1rem);
+    background-color: white;
+    display: block;
+    padding: 0 0.3rem;
+    border-radius: 0.3rem;
+    height: fit-content;
+    z-index: 10;
+    box-shadow: 0 0 2px 0 black;
+  }
+}
+.slider {
+  position: relative;
+
+  -webkit-appearance: none;
+  width: 100%;
   height: 0.2rem;
   border-radius: 5px;
   background: #d3d3d3;
@@ -39,8 +82,8 @@ export default {
   opacity: 0.7;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
-  background-image: linear-gradient(yellow, yellow);
-  background-size: 50% 100%;
+  background-image: linear-gradient(#f5c516, #ffdb58);
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   align-self: end;
 }
@@ -55,7 +98,7 @@ export default {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: yellow;
+  background: #f5c516;
   cursor: pointer;
 }
 

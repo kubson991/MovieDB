@@ -11,3 +11,12 @@ html {
   box-sizing: border-box;
   font-size: 1.2rem;
 }
+
+@media screen and (min-width: 1400px) {
+  html {
+    font-size: 90%;
+    width: 100vw;
+    max-width: 100%;
+    font-family: "Hind Siliguri", sans-serif;
+  }
+}
