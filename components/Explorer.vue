@@ -53,6 +53,8 @@ export default {
       handler: function (value) {
         if (this.Maxpages >= value) {
           this.getIntheater(value);
+        } else {
+          this.$store.commit("lastPage", true);
         }
       },
     },

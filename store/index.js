@@ -3,6 +3,7 @@ export const state = () => ({
   ModalInfo: {},
   page: 1,
   loading: false,
+  lastPage:false
 });
 
 export const getters = {
@@ -17,6 +18,9 @@ export const getters = {
   },
   loading(state) {
     return state.loading;
+  },
+  lastPage(state) {
+    return state.lastPage;
   },
 };
 
@@ -34,5 +38,8 @@ export const mutations = {
   },
   loading(state, loading) {
     state.loading = loading;
+  },
+  lastPage(state, lastPage) {
+    state.lastPage = lastPage;
   },
 };

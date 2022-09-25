@@ -4,8 +4,8 @@
     <HeaderIndex></HeaderIndex>
     <MainIndex />
     <div class="buttonContainer">
-      <button class="getMore" @click="more" v-show="!this.loading">+</button>
-      <button class="getMore" v-show="this.loading">
+      <button class="getMore" @click="more" v-show="!this.loading && !this.lastPage">+</button>
+      <button class="getMore" v-show="this.loading && !this.lastPage">
         <span class="one"></span>
         <span class="two"></span>
         <span class="three"></span>
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     more(e) {
-      if (!this.loading) {
+      if (!this.loading && !this.lastPage) {
         this.$store.commit("loading", true);
         this.page++;
         this.$store.commit("page", this.page);
@@ -37,6 +37,7 @@ export default {
     ...mapGetters({
       ModalOpen: "ModalOpen",
       loading: "loading",
+      lastPage: "lastPage",
     }),
   },
 };
