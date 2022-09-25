@@ -7,29 +7,58 @@
           rate = e;
         }
       "
+      @inputValue="
+        (e) => {
+          name = e;
+        }
+      "
     />
     <BlockContent :movies="filteredMovies" />
   </section>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
+      Maxpages: 2,
       movies: [],
       rate: 10,
+      name: "",
     };
   },
   beforeMount() {
-    this.getIntheater();
+    this.getIntheater(1);
   },
   computed: {
     filteredMovies() {
-      console.log(this.rate);
-      return this.movies.filter((movie) => movie.vote_average <= this.rate);
+      const filteredStars = this.movies.filter(
+        (movie) => movie.vote_average <= this.rate
+      );
+      if (this.name) {
+        const filterdStarsAndNames = this.movies.filter((movie) =>
+          movie.title.includes(this.name)
+        );
+        return filterdStarsAndNames;
+      }
+
+      return filteredStars;
+    },
+    ...mapGetters({
+      page: "page",
+    }),
+  },
+  watch: {
+    page: {
+      handler: function (value) {
+        if (this.Maxpages >= value) {
+          this.getIntheater(value);
+        }
+      },
     },
   },
   methods: {
-    async getIntheater() {
+    async getIntheater(page) {
       try {
         const fechaHOY = new Date();
         const movies = await this.$axios.$get(
@@ -39,7 +68,7 @@ export default {
               api_key: "cd1e965cab987c6ce87de011b366445c",
               language: "en-US",
               include_adult: true,
-              page: 1,
+              page,
               ["primary_release_date.gte"]: fechaHOY.setMonth(
                 fechaHOY.getMonth() - 1
               ),
@@ -50,9 +79,12 @@ export default {
             },
           }
         );
-        this.movies = movies.results;
+        this.Maxpages = movies.total_pages;
+        this.movies = this.movies.concat(movies.results);
       } catch (error) {
         console.error("la api fallo :(");
+      } finally {
+        this.$store.commit("loading", false);
       }
     },
   },
@@ -61,7 +93,7 @@ export default {
 <style lang="scss" scoped>
 .subSectionInfo {
   width: 95%;
-  min-height: 56vh;
+  height: 88vh;
   background-color: white;
   padding: 1rem;
 }

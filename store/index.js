@@ -1,6 +1,8 @@
 export const state = () => ({
   ModalOpen: false,
   ModalInfo: {},
+  page: 1,
+  loading: false,
 });
 
 export const getters = {
@@ -8,8 +10,13 @@ export const getters = {
     return state.ModalOpen;
   },
   ModalInfo(state) {
-    console.log(state);
     return state.ModalInfo;
+  },
+  page(state) {
+    return state.page;
+  },
+  loading(state) {
+    return state.loading;
   },
 };
 
@@ -21,5 +28,11 @@ export const mutations = {
   },
   ModalInfo(state, movie) {
     state.ModalInfo = movie;
+  },
+  page(state, page) {
+    state.page = page;
+  },
+  loading(state, loading) {
+    state.loading = loading;
   },
 };

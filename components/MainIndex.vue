@@ -16,6 +16,7 @@ main {
   position: relative;
   top: -2rem;
   border-radius: 0.8rem;
+  height: auto;
 }
 @media screen and (min-width: 1400px) {
   .mainExplorer {

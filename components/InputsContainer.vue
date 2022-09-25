@@ -19,7 +19,7 @@
     </div>
 
     <div class="inputSearch">
-      <input type="text" />
+      <input type="text" @input="emitInput" />
       <span class="material-icons-outlined"> search </span>
     </div>
   </section>
@@ -30,6 +30,7 @@ export default {
     return {
       sliderValue: 10,
       searchInputTimer: {},
+      searchInputNameTimer: {},
     };
   },
   methods: {
@@ -43,7 +44,13 @@ export default {
       window.clearTimeout(this.searchInputTimer);
       this.searchInputTimer = window.setTimeout(() => {
         this.$emit("rangevalue", this.sliderValue);
-      }, 400);
+      }, 300);
+    },
+    emitInput(e) {
+      window.clearTimeout(this.searchInputNameTimer);
+      this.searchInputNameTimer = window.setTimeout(() => {
+        this.$emit("inputValue", e.target.value);
+      }, 300);
     },
   },
 };

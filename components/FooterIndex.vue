@@ -72,8 +72,10 @@ p {
 }
 footer {
   display: block;
+  background-color: white;
   width: 100%;
   height: 5rem;
   box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.543);
+  z-index: 40;
 }
 </style>

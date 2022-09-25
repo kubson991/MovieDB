@@ -11,10 +11,6 @@ export default {
       default: () => [],
     },
   },
-  mounted() {
-    console.log(this.movies);
-  },
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -31,7 +27,9 @@ section {
 }
 @media screen and (min-width: 1400px) {
   section {
-    width: 92%;
+    padding: 2.3rem 1rem;
+    padding-bottom: 0rem;
+    width: 95%;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   }
 }
