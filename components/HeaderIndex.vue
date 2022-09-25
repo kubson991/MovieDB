@@ -3,10 +3,18 @@
     <section class="topInfo">
       <span class="IMDBicon"></span>
       <nav>
-        <nuxt-link to="">MOVIES</nuxt-link>
-        <nuxt-link to="">CELEBS & PHOTOS</nuxt-link>
-        <nuxt-link to="">COMMUNITY</nuxt-link>
-        <nuxt-link to="">NEWS</nuxt-link>
+        <a href="https://www.themoviedb.org" target="_blank">MOVIES</a>
+        <a href="https://www.themoviedb.org/person" target="_blank"
+          >CELEBS & PHOTOS</a
+        >
+        <a
+          href="https://contribute.imdb.com/czone?ref_=nv_cm_cz"
+          target="_blank"
+          >COMMUNITY</a
+        >
+        <a href="https://www.imdb.com/news/movie/?ref_=nv_nw_mv" target="_blank"
+          >NEWS</a
+        >
       </nav>
       <img
         src="https://media-exp1.licdn.com/dms/image/D4E35AQFaFkNUEbqhfA/profile-framedphoto-shrink_200_200/0/1662046419089?e=1664571600&v=beta&t=jE-3LJ4mskebjxxkf-YfwWg5n8dPyU_YA8PQZNZJ7f4"
@@ -57,20 +65,24 @@ export default {
     };
   },
   async created() {
-    const movies = await this.$axios.$get(
-      "https://api.themoviedb.org/3/discover/movie",
-      {
-        params: {
-          api_key: "cd1e965cab987c6ce87de011b366445c",
-          language: "en-US",
-          include_adult: true,
-          page: 1,
-          with_watch_monetization_types: "flatrate",
-        },
-      }
-    );
-    this.movies = movies.results.slice(-5);
-    this.getGenres(this.movies);
+    try {
+      const movies = await this.$axios.$get(
+        "https://api.themoviedb.org/3/discover/movie",
+        {
+          params: {
+            api_key: "cd1e965cab987c6ce87de011b366445c",
+            language: "en-US",
+            include_adult: true,
+            page: 1,
+            with_watch_monetization_types: "flatrate",
+          },
+        }
+      );
+      this.movies = movies.results.slice(-5);
+      this.getGenres(this.movies);
+    } catch (error) {
+      console.error("la api fallo :(");
+    }
   },
   computed: {
     backgrownStyle() {
@@ -305,6 +317,29 @@ header {
   }
   .trilerButton {
     margin-top: 4rem;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .topInfo {
+    position: relative;
+    top: 1rem;
+    justify-content: space-between;
+
+    nav {
+      min-width: 60%;
+      a {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+  .IMDBicon {
+    width: 5rem;
+    height: 5rem;
+    margin-left: 3rem;
+  }
+  .avatar {
+    margin-right: 3rem;
   }
 }
 </style>
