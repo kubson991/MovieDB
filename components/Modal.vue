@@ -176,13 +176,18 @@ export default {
       };
     },
     manageTrailer(movie) {
+      const movieTrailer = movie.videos.results;
       console.log(movie);
-      if (movie.videos.results) {
-        window.open(`https://www.youtube.com/watch?v=${[this.index].key}`, '_blank');
+      if (movieTrailer) {
+        window.open(
+          `https://www.youtube.com/watch?v=${movieTrailer[0].key}`,
+          "_blank"
+        );
       } else {
-        return `https://www.youtube.com/results?sp=mAEB&search_query=${
-          this.movies[this.index]?.original_title
-        }`;
+        window.open(
+          `https://www.youtube.com/results?sp=mAEB&search_query=${movie.title}`,
+          "_blank"
+        );
       }
     },
     async watchTrailer() {

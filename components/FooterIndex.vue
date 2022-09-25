@@ -3,19 +3,29 @@
     <section class="top">
       <p>IMDb</p>
       <nav>
-        <a href="">
+        <a
+          href="www.linkedin.com/in/juan-sebastian-poveda-florez
+"
+        >
           <img
             src="https://cdn.icon-icons.com/icons2/509/PNG/512/Twitter_icon-icons.com_49936.png"
+            target="_blank"
             alt=""
           />
         </a>
-        <a href="">
+        <a
+          href="https://www.facebook.com/sebastian.povedaflorez"
+          target="_blank"
+        >
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8cQ3R5wxbP6WBfnWmB_hTXR2ZUv5EQJt4oUqPZWG2qdJuvbpLr__JJl98UF7_5DZ5Mg4&usqp=CAU"
             alt=""
           />
         </a>
-        <a href="">
+        <a
+          href="https://portafoliodesebastianpoveda.netlify.app/acercaDeMi"
+          target="_blank"
+        >
           <img
             class="biggeriCON"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Black_Instagram_icon.svg/640px-Black_Instagram_icon.svg.png"
