@@ -102,7 +102,8 @@ export default {
 <style lang="scss" scoped>
 .subSectionInfo {
   width: 95%;
-  height: 88vh;
+  min-height: 20vh;
+  height: auto;
   background-color: white;
   padding: 1rem;
 }
