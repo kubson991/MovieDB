@@ -392,6 +392,14 @@ h2 {
       top: 0;
     }
   }
+  @keyframes opacityShadow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.3;
+    }
+  }
 
   .cardRating {
     opacity: 1;
@@ -429,7 +437,7 @@ h2 {
       display: block;
       position: absolute;
       background-color: white;
-      opacity: 0.3;
+      opacity: 0;
       width: 95%;
       height: 100%;
       top: -0.5rem;
@@ -437,13 +445,20 @@ h2 {
       right: 0;
       margin: auto;
       border-radius: 0.2rem;
+      animation-name: opacityShadow;
+      animation-delay: 1.1s;
+      animation-direction: unset;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: unset;
+      animation-timing-function: ease-in-out;
     }
     &:after {
       content: "";
       display: block;
       position: absolute;
       background-color: white;
-      opacity: 0.2;
+      opacity: 0;
       width: 90%;
       height: 100%;
       top: -1.1rem;
@@ -452,6 +467,13 @@ h2 {
       margin: auto;
       border-radius: 0.2rem;
       z-index: -1;
+      animation-name: opacityShadow;
+      animation-delay: 1.1s;
+      animation-direction: unset;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: unset;
+      animation-timing-function: ease-in-out;
     }
   }
   .setionLeft {
