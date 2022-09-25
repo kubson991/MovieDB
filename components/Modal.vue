@@ -37,7 +37,7 @@
         <button class="trailerButton" @click="watchTrailer">
           Watch Trailer
           <span class="material-icons-outlined"> arrow_right </span></button
-        ><button class="WatchListButton">
+        ><button class="WatchListButton" @click="toWatchLish">
           To Watchlist <span class="material-icons-outlined"> star </span>
         </button>
       </div>
@@ -104,13 +104,17 @@
                 : "There is not info avaible"
             }}
           </p>
+          <nuxt-link class="redirectMovie" :to="`/movie/${ModalInfo.id}`"
+            >Full Movie Profile
+            <span class="material-icons"> arrow_right_alt </span>
+          </nuxt-link>
         </section>
 
         <div class="buttonContainer">
           <button class="trailerButton" @click="watchTrailer">
             Watch Trailer
             <span class="material-icons-outlined"> arrow_right </span></button
-          ><button class="WatchListButton">
+          ><button class="WatchListButton" @click="toWatchLish">
             To Watchlist <span class="material-icons-outlined"> star </span>
           </button>
         </div>
@@ -163,7 +167,6 @@ export default {
         transformY =
           ((e.x - halfX) / (element.offsetLeft + element.offsetWidth - halfX)) *
           20;
-        console.log(transformY);
       } else if (e.x < halfX) {
         transformY =
           (100 -
@@ -177,7 +180,6 @@ export default {
     },
     manageTrailer(movie) {
       const movieTrailer = movie.videos.results;
-      console.log(movie);
       if (movieTrailer) {
         window.open(
           `https://www.youtube.com/watch?v=${movieTrailer[0].key}`,
@@ -203,6 +205,22 @@ export default {
       );
       this.manageTrailer(movie);
     },
+    toWatchLish() {
+      const JSONarray = window.localStorage.getItem("watchList");
+      let moviesIDS = JSON.parse(JSONarray);
+      if (!moviesIDS) {
+        moviesIDS = [];
+      }
+      if (moviesIDS.find((MovieId) => MovieId === this.ModalInfo.id)) {
+        const indice = moviesIDS.indexOf(this.ModalInfo.id);
+        moviesIDS.splice(indice, 1);
+        window.localStorage.setItem("watchList", JSON.stringify(moviesIDS));
+      } else {
+        moviesIDS.push(this.ModalInfo.id);
+        window.localStorage.setItem("watchList", JSON.stringify(moviesIDS));
+      }
+      this.$store.commit("favoriteMovies", moviesIDS.length);
+    },
   },
 };
 </script>
@@ -216,7 +234,7 @@ export default {
   position: absolute;
   height: 100%;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.539);
+  background-color: rgba(0, 0, 0, 0.647);
   z-index: 20;
 
   .modalMovile {
@@ -334,11 +352,16 @@ button {
 h2 {
   margin: auto;
   width: 90%;
+  height: 20%;
   font-size: 1.8rem;
   padding: 3rem 0 1rem 0;
 }
 .mask .resume {
   width: 90%;
+  height: 40%;
+  max-height: 40%;
+  overflow: scroll;
+  overflow: hidden;
   margin: auto;
   font-size: 1.3rem;
   line-height: 1.4em;
@@ -392,7 +415,6 @@ h2 {
   .modalDesktop {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     width: 60%;
     height: 65%;
     margin: auto;
@@ -402,10 +424,39 @@ h2 {
     left: 0;
     right: 0;
     border-radius: 0.4rem;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: white;
+      opacity: 0.3;
+      width: 95%;
+      height: 100%;
+      top: -0.5rem;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 0.2rem;
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: white;
+      opacity: 0.2;
+      width: 90%;
+      height: 100%;
+      top: -1.1rem;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 0.2rem;
+      z-index: -1;
+    }
   }
   .setionLeft {
     position: relative;
-    width: 40%;
+    width: 45%;
     height: 100%;
     .imgContainer {
       position: absolute;
@@ -441,9 +492,31 @@ h2 {
     overflow: hidden;
 
     opacity: 0.8;
-    p {
+    .sinopsis {
       font-size: 1.3rem;
+      max-height: 8.8em;
       text-align: justify;
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #f5c516;
+        border-radius: 14px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: yellow;
+      }
     }
   }
   .ratingContainer {
@@ -499,5 +572,16 @@ h2 {
     color: #50aece;
     font-weight: 300;
   }
+}
+
+.redirectMovie {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: #42a0bf;
+  width: fit-content;
+  margin-left: 6%;
+  margin-top: 3%;
 }
 </style>

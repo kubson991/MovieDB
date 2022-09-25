@@ -3,7 +3,8 @@ export const state = () => ({
   ModalInfo: {},
   page: 1,
   loading: false,
-  lastPage:false
+  lastPage: false,
+  favoriteMovies: 0,
 });
 
 export const getters = {
@@ -21,6 +22,9 @@ export const getters = {
   },
   lastPage(state) {
     return state.lastPage;
+  },
+  favoriteMovies(state) {
+    return state.favoriteMovies;
   },
 };
 
@@ -41,5 +45,8 @@ export const mutations = {
   },
   lastPage(state, lastPage) {
     state.lastPage = lastPage;
+  },
+  favoriteMovies(state, favoriteMovies) {
+    state.favoriteMovies = favoriteMovies;
   },
 };

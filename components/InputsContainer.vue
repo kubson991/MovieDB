@@ -1,7 +1,19 @@
 <template>
   <section class="inputsContainer">
-    <span class="material-icons-outlined buttonsOrder"> menu </span>
-    <span class="material-icons-outlined buttonsOrder"> view_compact </span>
+    <span
+      class="material-icons-outlined buttonsOrder"
+      @click="emitMode(false)"
+      :class="{ active: !blockMode }"
+    >
+      menu
+    </span>
+    <span
+      class="material-icons-outlined buttonsOrder"
+      @click="emitMode(true)"
+      :class="{ active: blockMode }"
+    >
+      view_compact
+    </span>
     <div class="sliderContainer">
       <span ref="sliderValue">
         <p>{{ sliderValue }}</p></span
@@ -31,6 +43,7 @@ export default {
       sliderValue: 10,
       searchInputTimer: {},
       searchInputNameTimer: {},
+      blockMode: true,
     };
   },
   methods: {
@@ -52,6 +65,10 @@ export default {
         this.$emit("inputValue", e.target.value);
       }, 300);
     },
+    emitMode(value) {
+      this.blockMode = value;
+      this.$emit("blockMode", value);
+    },
   },
 };
 </script>
@@ -62,6 +79,7 @@ export default {
   display: flex;
   align-items: flex-end;
   span {
+    transition: color 4s ease-in;
     letter-spacing: 0.1em;
     position: absolute;
     left: 90%;
@@ -149,5 +167,8 @@ export default {
   &:hover {
     color: rgba(0, 0, 0, 0.903);
   }
+}
+.active {
+  color: black;
 }
 </style>

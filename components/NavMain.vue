@@ -10,18 +10,48 @@
       <nuxt-link to="sites/MORE">MORE</nuxt-link>
     </div>
     <span class="material-icons-outlined"> {{ expand }} </span>
-    <div class="stars">
+    <div class="stars" @click="showIDS">
       <span class="material-icons"> star </span>
-      <span>0</span>
+      <span>{{ this.favoriteMovies }}</span>
     </div>
   </nav>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       expand: "expand_more",
+      saved: 0,
     };
+  },
+  computed: {
+    ...mapGetters({
+      favoriteMovies: "favoriteMovies",
+    }),
+  },
+  beforeMount() {
+    const JSONarray = window.localStorage.getItem("watchList");
+    const moviesIDS = JSON.parse(JSONarray);
+    if (moviesIDS !== undefined) {
+      this.$store.commit("favoriteMovies", moviesIDS.length);
+    } else {
+      this.$store.commit("favoriteMovies", 0);
+    }
+  },
+  methods: {
+    showIDS() {
+      const JSONarray = window.localStorage.getItem("watchList");
+      const moviesIDS = JSON.parse(JSONarray);
+      if (moviesIDS !== undefined) {
+        window.alert(
+          "estos son los ID`s de las peliculas que tienes en favoritos:   " +
+            moviesIDS
+        );
+      } else {
+        window.alert("no hay IDS en favoritos para agregar");
+      }
+    },
   },
 };
 </script>
@@ -29,6 +59,7 @@ export default {
 nav {
   .stars {
     display: none;
+    cursor: pointer;
   }
   position: relative;
   width: 100%;

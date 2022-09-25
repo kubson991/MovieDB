@@ -12,8 +12,14 @@
           name = e;
         }
       "
+      @blockMode="
+        (e) => {
+          blockMode = e;
+        }
+      "
     />
-    <BlockContent :movies="filteredMovies" />
+    <BlockContent v-show="blockMode" :movies="filteredMovies" />
+    <ListComponent v-show="!blockMode" :movies="filteredMovies" />
   </section>
 </template>
 <script>
@@ -25,6 +31,7 @@ export default {
       movies: [],
       rate: 10,
       name: "",
+      blockMode: true,
     };
   },
   beforeMount() {
@@ -54,7 +61,7 @@ export default {
         if (this.Maxpages >= value) {
           this.getIntheater(value);
         } else {
-          this.$store.commit("lastPage", true);
+          this.$store.commit("lastPage");
         }
       },
     },

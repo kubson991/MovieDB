@@ -129,7 +129,7 @@ export default {
           this.triler = movies.map((movie) => movie.videos.results[0]);
         });
       } catch (error) {
-        console.error('error de la api :(')
+        console.error("error de la api :(");
       }
     },
     changeIndex(down) {
@@ -155,25 +155,31 @@ header {
 }
 .IMDBicon {
   @include icons("~assets/imdbIMG.png");
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  position: relative;
+  top: 1rem;
+  left: 2rem;
 }
 
 .avatar {
   max-width: 5rem;
   max-height: 5rem;
   border-radius: 50%;
-  width: 10%;
+  position: relative;
+  top: 1rem;
+  right: 2rem;
 }
 
 .topInfo {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-top: 0.5rem;
+
   nav {
+    display: none;
     min-width: 80%;
-    display: flex;
     align-items: center;
     justify-content: space-evenly;
     a {
@@ -242,6 +248,10 @@ header {
   height: 80%;
 }
 .arrowContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   width: 10%;
   color: white;
   span {
@@ -264,6 +274,11 @@ header {
   padding: 1rem 2rem;
   font-weight: bolder;
   font-size: 1.3rem;
+}
+@media screen and (min-width: 500px) {
+  .topInfo nav {
+    display: flex;
+  }
 }
 @media screen and (min-width: 1400px) {
   .moreInfo {

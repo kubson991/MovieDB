@@ -14,6 +14,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@keyframes opacityChange {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 section {
   padding-top: 1rem;
   display: grid;
@@ -24,6 +32,13 @@ section {
   justify-items: center;
   margin: 0 auto;
   margin-bottom: 1rem;
+  animation-name: opacityChange;
+  animation-delay: 0s;
+  animation-direction: unset;
+  animation-duration: 1.3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: unset;
+  animation-timing-function: ease-in-out;
 }
 @media screen and (min-width: 1400px) {
   section {

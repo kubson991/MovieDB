@@ -5,6 +5,15 @@ html {
   width: 100vw;
   max-width: 100%;
   font-family: "Hind Siliguri", sans-serif;
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 * {
   margin: 0;
@@ -20,4 +29,3 @@ html {
     font-family: "Hind Siliguri", sans-serif;
   }
 }
-
