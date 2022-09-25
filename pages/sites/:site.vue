@@ -6,6 +6,7 @@
 <style lang="scss" scoped>
 main {
   background-color: white;
+  overflow: hidden;
 }
 img {
   position: absolute;
@@ -15,5 +16,6 @@ img {
   bottom: 0;
   margin: auto;
   width: 80%;
+  max-height: 100vh;
 }
 </style>

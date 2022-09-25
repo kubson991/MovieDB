@@ -45,7 +45,7 @@ nav {
     font-weight: 500;
     text-decoration: none;
     &:hover {
-      color: yellow;
+      color: #f5c516;
     }
   }
 }
@@ -75,7 +75,7 @@ nav:hover {
     padding: 0.2rem;
     width: fit-content;
     &:hover {
-      border-bottom: 1px solid yellow;
+      border-bottom: 1px solid #f5c516;
     }
   }
   span {
@@ -98,7 +98,7 @@ span {
       color: black;
       font-weight: 500;
       &:hover {
-        color: yellow;
+        color: #f5c516;
       }
     }
     span {
@@ -154,7 +154,7 @@ span {
       width: fit-content;
       border-bottom: unset;
       &:hover {
-        color: yellow;
+        color: #f5c516;
         cursor: pointer;
         position: relative;
         border-bottom: unset;
@@ -165,7 +165,7 @@ span {
           content: "";
           width: 100%;
           height: 0.1rem;
-          background-color: yellow;
+          background-color: #f5c516;
         }
       }
     }

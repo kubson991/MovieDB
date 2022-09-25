@@ -34,7 +34,7 @@
         </div>
       </section>
       <div class="buttonContainer">
-        <button class="trailerButton">
+        <button class="trailerButton" @click="watchTrailer">
           Watch Trailer
           <span class="material-icons-outlined"> arrow_right </span></button
         ><button class="WatchListButton">
@@ -107,7 +107,7 @@
         </section>
 
         <div class="buttonContainer">
-          <button class="trailerButton">
+          <button class="trailerButton" @click="watchTrailer">
             Watch Trailer
             <span class="material-icons-outlined"> arrow_right </span></button
           ><button class="WatchListButton">
@@ -174,6 +174,29 @@ export default {
       this.trasnfrom = {
         transform: `rotateX(${transformX}deg) rotateY(${transformY}deg)`,
       };
+    },
+    manageTrailer(movie) {
+      console.log(movie);
+      if (movie.videos.results) {
+        window.open(`https://www.youtube.com/watch?v=${[this.index].key}`, '_blank');
+      } else {
+        return `https://www.youtube.com/results?sp=mAEB&search_query=${
+          this.movies[this.index]?.original_title
+        }`;
+      }
+    },
+    async watchTrailer() {
+      const movie = await this.$axios.$get(
+        `https://api.themoviedb.org/3/movie/${this.ModalInfo.id}`,
+        {
+          params: {
+            api_key: "cd1e965cab987c6ce87de011b366445c",
+            with_watch_monetization_types: "flatrate",
+            append_to_response: "videos",
+          },
+        }
+      );
+      this.manageTrailer(movie);
     },
   },
 };

@@ -138,7 +138,7 @@ h2 {
 }
 @media screen and (min-width: 1400px) {
   article:hover {
-    z-index: 50;
+    z-index: 15;
     transform: scale(1.1);
     box-shadow: 0 0 2.5rem 0 rgba(0, 0, 0, 0.425);
   }

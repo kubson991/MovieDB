@@ -40,6 +40,10 @@
           Watch Trailer
           <span class="material-icons-outlined"> arrow_circle_right </span></a
         >
+        <div class="moreInfo">
+          <h3>In theaters</h3>
+          <p>Now</p>
+        </div>
       </div>
       <nav class="arrowContainer">
         <span class="material-icons-outlined" @click="changeIndex(false)">
@@ -107,22 +111,26 @@ export default {
   },
   methods: {
     getGenres(movies) {
-      const promisesMovies = movies.map((movie) => {
-        return this.$axios.$get(
-          `https://api.themoviedb.org/3/movie/${movie.id}`,
-          {
-            params: {
-              api_key: "cd1e965cab987c6ce87de011b366445c",
-              with_watch_monetization_types: "flatrate",
-              append_to_response: "videos",
-            },
-          }
-        );
-      });
-      Promise.all(promisesMovies).then((movies) => {
-        this.genres = movies.map((movie) => movie.genres);
-        this.triler = movies.map((movie) => movie.videos.results[0]);
-      });
+      try {
+        const promisesMovies = movies.map((movie) => {
+          return this.$axios.$get(
+            `https://api.themoviedb.org/3/movie/${movie.id}`,
+            {
+              params: {
+                api_key: "cd1e965cab987c6ce87de011b366445c",
+                with_watch_monetization_types: "flatrate",
+                append_to_response: "videos",
+              },
+            }
+          );
+        });
+        Promise.all(promisesMovies).then((movies) => {
+          this.genres = movies.map((movie) => movie.genres);
+          this.triler = movies.map((movie) => movie.videos.results[0]);
+        });
+      } catch (error) {
+        console.error('error de la api :(')
+      }
     },
     changeIndex(down) {
       if (this.index < 4 && down) {
@@ -135,6 +143,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.moreInfo {
+  display: none;
+}
 header {
   height: 40vh;
   width: 100%;
@@ -255,6 +266,18 @@ header {
   font-size: 1.3rem;
 }
 @media screen and (min-width: 1400px) {
+  .moreInfo {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    h3 {
+      color: white;
+    }
+    p {
+      color: #f5c516;
+    }
+  }
   header {
     height: 75vh;
   }

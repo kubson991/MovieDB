@@ -139,5 +139,8 @@ export default {
 .buttonsOrder {
   color: #d3d3d3;
   cursor: pointer;
+  &:hover {
+    color: rgba(0, 0, 0, 0.903);
+  }
 }
 </style>
